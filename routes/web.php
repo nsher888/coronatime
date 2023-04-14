@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,8 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/register', [RegisterController::class, 'create'])->name('register.create');
-Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
+Route::get('/register', [RegisterController::class, 'create'])->name('register.create')->middleware('guest');
+Route::post('/register', [RegisterController::class, 'store'])->name('register.store')->middleware('guest');
+
+Route::post('/logout', [SessionController::class, 'destroy'])->name('logout')->middleware('auth');
 
 Route::get('/home', function () {
     return view('home');
