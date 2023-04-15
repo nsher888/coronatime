@@ -1,7 +1,8 @@
 <x-layout>
     <x-split-layout>
         <x-form-header title="Welcome back" subtitle="Welcome back! Please enter you details" />
-        <form class="max-w-sm" action="">
+        <form class="max-w-sm" method="POST" action="{{ route('login.store') }}">
+            @csrf
             <x-form-input type="text" name="username" placeholder="Enter unique username or email" />
             <x-form-input type="password" name="password" placeholder="Enter your password" />
             <div class="flex items-center justify-between mb-6">

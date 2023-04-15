@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\EmailVerificationController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SessionController;
+use App\Mail\VerifyMail;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +18,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('registration');
-});
+Route::get('register', [RegisterController::class, 'create'])->name('register.create')->middleware('guest');
+Route::post('register', [RegisterController::class, 'store'])->name('register.store')->middleware('guest');
+
+Route::get('login', [SessionController::class, 'create'])->name('login.create')->middleware('guest');
+Route::post('login', [SessionController::class, 'store'])->name('login.store')->middleware('guest');
+
+Route::post('logout', [SessionController::class, 'destroy'])->name('logout')->middleware('auth');
+
+// FOR TESTING ONLY
+Route::view('home', 'home')->middleware('auth')->name('home');
+
+Route::view('email/verify', 'email.verify')->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', [EmailVerificationController::class, 'verify'])
+    ->middleware(['auth', 'signed'])
+    ->name('verification.verify');
