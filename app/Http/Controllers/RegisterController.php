@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 
 class RegisterController extends Controller
@@ -21,8 +22,9 @@ class RegisterController extends Controller
 
         $user = User::create($attributes);
 
+        event(new Registered($user));
         auth()->login($user);
 
-        return redirect()->route('home');
+        return redirect()->route('verification.notice');
     }
 }

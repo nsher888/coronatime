@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionController;
+use App\Mail\VerifyMail;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,11 +17,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/register', [RegisterController::class, 'create'])->name('register.create')->middleware('guest');
-Route::post('/register', [RegisterController::class, 'store'])->name('register.store')->middleware('guest');
+Route::get('register', [RegisterController::class, 'create'])->name('register.create')->middleware('guest');
+Route::post('register', [RegisterController::class, 'store'])->name('register.store')->middleware('guest');
 
-Route::post('/logout', [SessionController::class, 'destroy'])->name('logout')->middleware('auth');
+Route::get('login', [SessionController::class, 'create'])->name('login.create')->middleware('guest');
+Route::post('login', [SessionController::class, 'store'])->name('login.store')->middleware('guest');
+
+Route::post('logout', [SessionController::class, 'destroy'])->name('logout')->middleware('auth');
 
 Route::get('/home', function () {
     return view('home');
 })->name('home');
+
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect('/home');
+})->middleware(['auth', 'signed'])->name('verification.verify');
