@@ -7,15 +7,10 @@ use Illuminate\Http\Request;
 
 class EmailVerificationController extends Controller
 {
-    public function show()
+    public function verify(EmailVerificationRequest $request)
     {
-        return view('auth.verify-email');
+        $request->fulfill();
+
+        return redirect('/home');
     }
-
-public function verify(EmailVerificationRequest $request)
-{
-    $request->fulfill();
-
-    return redirect('/home');
-}
 }

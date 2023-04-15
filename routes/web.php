@@ -27,13 +27,9 @@ Route::post('login', [SessionController::class, 'store'])->name('login.store')->
 Route::post('logout', [SessionController::class, 'destroy'])->name('logout')->middleware('auth');
 
 // FOR TESTING ONLY
-Route::get('/home', function () {
-    return view('home');
-})->name('home');
+Route::view('home', 'home')->middleware('auth')->name('home');
 
-Route::get('/email/verify', [EmailVerificationController::class, 'show'])
-    ->middleware('auth')
-    ->name('verification.notice');
+Route::view('email/verify', 'email.verify')->middleware('auth')->name('verification.notice');
 
 Route::get('/email/verify/{id}/{hash}', [EmailVerificationController::class, 'verify'])
     ->middleware(['auth', 'signed'])
