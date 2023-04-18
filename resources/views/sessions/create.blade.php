@@ -7,7 +7,8 @@
             <x-form-input type="password" name="password" placeholder="Enter your password" />
             <div class="flex items-center justify-between mb-6">
                 <x-form-checkbox name="remember" label="Remember this device" />
-                <a href="" class="text-sm font-semibold text-blue-700">Forgot password?</a>
+                <a href="{{ route('password.request') }}" class="text-sm font-semibold text-blue-700">Forgot
+                    password?</a>
             </div>
 
             <x-form-button label="log in" />
