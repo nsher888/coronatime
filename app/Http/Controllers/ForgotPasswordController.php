@@ -34,8 +34,6 @@ class ForgotPasswordController extends Controller
 
     public function updatePassword(ResetPasswordRequest $request)
     {
-        $request->validated();
-
         $status = Password::reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),
             function ($user, $password) {
