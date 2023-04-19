@@ -2,14 +2,12 @@
 
 namespace App\Models;
 
-use App\Mail\VerifyEmail;
 use App\Notifications\ResetPasswordNotification;
+use App\Notifications\VerifyEmailNotification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\URL;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -53,4 +51,13 @@ class User extends Authenticatable implements MustVerifyEmail
         $this->notify(new ResetPasswordNotification($token));
     }
 
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new VerifyEmailNotification(app()->getLocale()));
+    }
+
+    public function getEmailForVerification()
+    {
+        return $this->email;
+    }
 }

@@ -11,7 +11,7 @@
         <div class="flex gap-5">
             <p>{{ auth()->user()->username }}</p>
 
-            <form method="POST" action="{{ route('logout') }}">
+            <form method="POST" action="{{ route('logout', app()->getLocale()) }}">
                 @csrf
                 <button type="submit">Log out</button>
             </form>

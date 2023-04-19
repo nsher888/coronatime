@@ -22,7 +22,7 @@ class ForgotPasswordController extends Controller
         );
 
         if ($status === Password::RESET_LINK_SENT) {
-            return redirect()->route('verification.notice')->with('status', trans($status));
+            return redirect()->route('verification.notice', app()->getLocale())->with('status', trans($status));
         }
 
         return back()->withInput($request->only('email'))->withErrors([
@@ -47,7 +47,7 @@ class ForgotPasswordController extends Controller
 
 
         return $status === Password::PASSWORD_RESET
-            ? redirect()->route('password.success')->with('status', __($status))
+            ? redirect()->route('password.success', app()->getLocale())->with('status', __($status))
             : back()->withErrors(['email' => [__($status)]]);
     }
 }

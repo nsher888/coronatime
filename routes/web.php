@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\EmailVerificationController;
+use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionController;
@@ -36,10 +36,6 @@ Route::group(['prefix' => '{language}'], function () {
 
     Route::view('verify-notice', 'auth.verify-email')->name('verification.notice');
 
-    Route::get('/email/verify/{id}/{hash}', [EmailVerificationController::class, 'verify'])
-        ->middleware(['auth', 'signed'])
-        ->name('verification.verify');
-
     Route::view('/forgot-password', 'auth.forgot-password')->name('password.request');
 
     Route::get('/reset-password', [ForgotPasswordController::class, 'create'])->name('password.reset');
@@ -48,6 +44,13 @@ Route::group(['prefix' => '{language}'], function () {
 
     Route::post('/forgot-password', [ForgotPasswordController::class, 'store'])->name('password.email');
 
+    Route::get('/email/verify/{id}/{hash}', [EmailVerificationController::class, 'verify'])
+        ->middleware(['auth', 'signed'])
+        ->name('verification.verify');
+
     Route::view('/reset-success', 'auth.reset-success')->name('password.success');
+
+    Route::view('/verify-success', 'auth.verify-success')->name('verification.success');
+
 
 });

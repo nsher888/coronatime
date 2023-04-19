@@ -4,12 +4,15 @@
     </div>
 
     <div class="absolute flex flex-col items-center transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-        <h1 class="text-2xl font-extrabold mb-14">Reset Password</h1>
+        <h1 class="text-2xl font-extrabold mb-14">{{ __('auth.reset_password') }}</h1>
 
-        <form method="POST" action="{{ route('password.email') }}" class="w-[392px]">
+
+        <form method="POST" action="{{ route('password.email', ['language' => app()->getLocale()]) }}"
+            class="w-[392px]">
             @csrf
-            <x-form-input type="text" name="email" placeholder="Enter your Email" />
-            <x-form-button label="Reset Password" />
+            <x-form-input type="text" name="email" label="{{ __('auth.mail') }}"
+                placeholder="{{ __('auth.enter_mail') }}" />
+            <x-form-button label="{{ __('auth.reset_password') }}" />
         </form>
     </div>
 </x-layout>

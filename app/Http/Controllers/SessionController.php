@@ -26,13 +26,13 @@ class SessionController extends Controller
 
         session()->regenerate();
 
-        return redirect()->route('home');
+        return redirect()->route('home', app()->getLocale());
     }
 
     public function destroy()
     {
         auth()->logout();
 
-        return redirect()->route('login.create');
+        return redirect()->route('login.create', app()->getLocale());
     }
 }
