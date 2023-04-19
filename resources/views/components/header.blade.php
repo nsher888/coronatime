@@ -4,6 +4,10 @@
             <img src="{{ asset('images/logo-2.png') }}" alt="Logo">
         </div>
 
+        <div class="">
+            <x-language />
+        </div>
+
         <div class="flex gap-5">
             <p>{{ auth()->user()->username }}</p>
 
