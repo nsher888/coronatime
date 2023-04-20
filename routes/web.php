@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::redirect('/', '/en/login', 301);
+Route::redirect('/', '/en/dashboard', 301);
 
 Route::group(['prefix' => '{language}'], function () {
     Route::get('login', [SessionController::class, 'create'])->name('login.create')->middleware('guest');
@@ -31,8 +31,7 @@ Route::group(['prefix' => '{language}'], function () {
 
     Route::post('logout', [SessionController::class, 'destroy'])->name('logout')->middleware('auth');
 
-    // FOR TESTING ONLY
-    Route::view('home', 'home')->middleware('auth')->name('home');
+    Route::view('dashboard', 'dashboard')->middleware('auth')->name('dashboard');
 
     Route::view('verify-notice', 'auth.verify-email')->name('verification.notice');
 
