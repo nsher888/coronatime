@@ -41,5 +41,5 @@ return [
     'password_success' => 'Your password has been updeted successfully',
     'email_success' => 'Your account is confirmed, you can sign in',
     'logout' => 'Logout',
-
+    'email_verify_success' => 'Your account is confirmed, you can sign in'
 ];

@@ -51,6 +51,4 @@ Route::group(['prefix' => '{language}'], function () {
     Route::view('/reset-success', 'auth.reset-success')->name('password.success');
 
     Route::view('/verify-success', 'auth.verify-success')->name('verification.success');
-
-
 });
