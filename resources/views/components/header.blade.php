@@ -4,12 +4,18 @@
             <img src="{{ asset('images/logo-2.png') }}" alt="Logo">
         </div>
 
-        <div class="flex gap-5">
+
+
+        <div class="flex items-center gap-5">
+
+            <div>
+                <x-language />
+            </div>
             <p>{{ auth()->user()->username }}</p>
 
-            <form method="POST" action="{{ route('logout') }}">
+            <form method="POST" action="{{ route('logout', app()->getLocale()) }}">
                 @csrf
-                <button type="submit">Log out</button>
+                <button type="submit">{{ __('auth.logout') }}</button>
             </form>
         </div>
     </div>

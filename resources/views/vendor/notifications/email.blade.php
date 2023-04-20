@@ -16,17 +16,18 @@
         <div style="text-align: center;">
             <h1
                 style="font-style: normal; margin-bottom: 16px; font-weight: 900; font-size: 25px; color: #010414; text-align: center;">
-                Confirmation email
+                {{ __('mail.confirmation_email') }}
             </h1>
             <p
                 style="font-style: normal; font-weight: 400; margin-bottom: 40px; font-size: 18px; color: #010414; text-align: center;">
-                click this button to verify email
+                {{ __('mail.confirmation_email_message') }}
             </p>
         </div>
 
         <a href="{{ $actionUrl }}"
             style="display: inline-block; max-width: 392px; width:100%; height: 56px; background-color: #0FBA68; color: #ffffff; text-decoration: none; text-align: center; line-height: 56px; font-size: 16px; border-radius: 4px; font-weight: 900; display: block; margin: 0 auto;">
-            VERIFY EMAIL
+            {{ __('mail.confirmation_verify') }}
+
         </a>
     </div>
 </body>

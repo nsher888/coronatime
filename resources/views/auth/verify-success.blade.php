@@ -5,7 +5,7 @@
 
     <div class="absolute flex flex-col items-center transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
         <img src="{{ asset('images/check-circle.gif') }}" class="mb-4 w-14 h-14">
-        <p class="text-lg text-slate-950">{{ __('auth.password_success') }}</p>
+        <p class="text-lg text-slate-950">{{ __('auth.email_verify_success') }}</p>
 
 
         <a class="w-full py-4 mt-24 mb-6 font-extrabold text-center text-white transition-all duration-100 bg-green-500 rounded-lg hover:bg-green-600"

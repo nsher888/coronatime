@@ -5,6 +5,6 @@
 
     <div class="absolute flex flex-col items-center transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
         <img src="{{ asset('images/check-circle.gif') }}" class="mb-4 w-14 h-14">
-        <p class="text-lg text-slate-950">We have sent you a confirmation email</p>
+        <p class="text-lg text-slate-950">{{ __('auth.verification_sent') }}</p>
     </div>
 </x-layout>

@@ -1,4 +1,4 @@
-@props(['type', 'name', 'placeholder', 'label' => null])
+@props(['type', 'name', 'placeholder', 'label' => null,])
 
 <div class="flex flex-col gap-2 mb-4 md:mb-6">
     <label class="font-bold text-slate-950" for="{{ $name }}">{{ $label ?? ucfirst($name) }}</label>
