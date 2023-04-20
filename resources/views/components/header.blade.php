@@ -11,7 +11,7 @@
             <div>
                 <x-language />
             </div>
-            <p>{{ auth()->user()->username }}</p>
+            <p class="pr-4 font-bold border-r">{{ auth()->user()->username }}</p>
 
             <form method="POST" action="{{ route('logout', app()->getLocale()) }}">
                 @csrf
