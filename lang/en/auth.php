@@ -40,5 +40,6 @@ return [
     'enter_new_password' => 'Enter new password',
     'password_success' => 'Your password has been updeted successfully',
     'email_success' => 'Your account is confirmed, you can sign in',
+    'logout' => 'Logout',
 
 ];
