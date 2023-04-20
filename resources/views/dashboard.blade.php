@@ -2,11 +2,11 @@
     <x-header />
 
     <div class="mx-auto max-w-7xl">
-        <h1 class="mt-10 text-2xl font-extrabold text-zinc-950">Worldwide Statistics</h1>
+        <h1 class="mt-10 text-2xl font-extrabold text-zinc-950">{{ __('dashboard.worldwide_stat') }}</h1>
 
         <div class="flex gap-20 mt-10 border-b border-neutral-100">
-            <a href="" class="border-b-[3px] border-slate-950 pb-4 font-semibold">Worldwide</a>
-            <a href="">By country</a>
+            <a href="" class="border-b-[3px] border-slate-950 pb-4 font-semibold">{{ __('dashboard.worldwide') }}</a>
+            <a href="">{{ __('dashboard.by_country') }}</a>
         </div>
 
         <div class="flex flex-wrap justify-between gap-6 mt-10">
@@ -29,7 +29,7 @@
                         </defs>
                     </svg>
 
-                    <h2 class="mb-4 text-xl font-medium">New Cases</h2>
+                    <h2 class="mb-4 text-xl font-medium">{{ __('dashboard.new_cases') }}</h2>
                     <h3 class="text-4xl font-extrabold text-blue-700">715,523</h3>
                 </div>
             </div>
@@ -53,7 +53,7 @@
                     </svg>
 
 
-                    <h2 class="mb-4 text-xl font-medium">Recovered</h2>
+                    <h2 class="mb-4 text-xl font-medium">{{ __('dashboard.recovered') }}</h2>
                     <h3 class="text-4xl font-extrabold text-green-600">72,005</h3>
                 </div>
             </div>
@@ -77,7 +77,7 @@
                     </svg>
 
 
-                    <h2 class="mb-4 text-xl font-medium">Deaths</h2>
+                    <h2 class="mb-4 text-xl font-medium">{{ __('dashboard.deaths') }}</h2>
                     <h3 class="text-4xl font-extrabold text-yellow-400">8,332</h3>
                 </div>
             </div>
