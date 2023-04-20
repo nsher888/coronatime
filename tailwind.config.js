@@ -12,6 +12,9 @@ module.exports = {
                 "green-rgba": "rgba(15, 186, 104, 0.08)",
                 "yellow-rgba": "rgba(234, 214, 33, 0.08)",
             },
+            boxShadow: {
+                "box-sm": "1px 2px 8px rgba(0, 0, 0, 0.04);",
+            },
         },
         fontFamily: {
             Inter: ["Inter", "sans-serif"],

@@ -33,6 +33,8 @@ Route::group(['prefix' => '{language}'], function () {
 
     Route::view('dashboard', 'dashboard')->middleware('auth')->name('dashboard');
 
+    Route::view('country-dashboard', 'country-dashboard')->middleware('auth')->name('country-dashboard');
+
     Route::view('verify-notice', 'auth.verify-email')->name('verification.notice');
 
     Route::view('/forgot-password', 'auth.forgot-password')->name('password.request');

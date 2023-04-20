@@ -5,12 +5,12 @@
         <h1 class="mt-10 text-2xl font-extrabold text-zinc-950">{{ __('dashboard.worldwide_stat') }}</h1>
 
         <div class="flex gap-4 mt-10 border-b md:gap-20 border-neutral-100">
-            <a href="" class="border-b-[3px] border-slate-950 pb-4 font-semibold">{{ __('dashboard.worldwide') }}</a>
-            <a href="">{{ __('dashboard.by_country') }}</a>
+            <a class="border-b-[3px] border-slate-950 pb-4 font-semibold">{{ __('dashboard.worldwide') }}</a>
+            <a href="{{ route('country-dashboard', app()->getLocale()) }}">{{ __('dashboard.by_country') }}</a>
         </div>
 
         <div class="flex flex-wrap justify-between gap-4 mt-10 md:gap-6">
-            <div class="w-full h-48 md:h-64 md:flex-1 rounded-2xl bg-blue-rgba ">
+            <div class="w-full h-48 md:h-64 md:flex-1 rounded-2xl bg-blue-rgba shadow-box-sm">
                 <div class="flex flex-col items-center justify-center h-full">
                     <svg class="mb-6" width="92" height="65" viewBox="0 0 92 65" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -33,7 +33,7 @@
                     <h3 class="text-2xl font-extrabold text-blue-700 md:text-4xl">715,523</h3>
                 </div>
             </div>
-            <div class="flex-1 h-48 md:h-64 rounded-2xl bg-green-rgba">
+            <div class="flex-1 h-48 md:h-64 rounded-2xl bg-green-rgba shadow-box-sm">
                 <div class="flex flex-col items-center justify-center h-full">
                     <svg class="mb-6" width="92" height="65" viewBox="0 0 92 41" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -52,12 +52,11 @@
                         </defs>
                     </svg>
 
-
                     <h2 class="mb-4 font-medium md:text-xl">{{ __('dashboard.recovered') }}</h2>
                     <h3 class="text-2xl font-extrabold text-green-600 md:text-4xl">72,005</h3>
                 </div>
             </div>
-            <div class="flex-1 h-48 md:h-64 rounded-2xl bg-yellow-rgba">
+            <div class="flex-1 h-48 md:h-64 rounded-2xl bg-yellow-rgba shadow-box-sm">
                 <div class="flex flex-col items-center justify-center h-full">
                     <svg class="mb-6" width="92" height="65" viewBox="0 0 92 52" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -75,7 +74,6 @@
                             </linearGradient>
                         </defs>
                     </svg>
-
 
                     <h2 class="mb-4 font-medium md:text-xl">{{ __('dashboard.deaths') }}</h2>
                     <h3 class="text-2xl font-extrabold text-yellow-400 md:text-4xl">8,332</h3>
