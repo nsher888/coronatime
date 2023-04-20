@@ -18,12 +18,12 @@ class VerifyEmailNotification extends Notification
         $this->locale = $locale;
     }
 
-    public function via($notifiable)
+    public function via($notifiable): array
     {
         return ['mail'];
     }
 
-    public function toMail($notifiable)
+    public function toMail($notifiable): MailMessage
     {
         $url = URL::temporarySignedRoute(
             'verification.verify',

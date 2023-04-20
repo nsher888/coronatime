@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class EmailVerificationController extends Controller
 {
-    public function verify(EmailVerificationRequest $request)
+    public function verify(EmailVerificationRequest $request): RedirectResponse
     {
         if ($request->user()->hasVerifiedEmail()) {
             return redirect()->intended(config('fortify.home'));
