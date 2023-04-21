@@ -28,7 +28,7 @@ class SessionController extends Controller
 
         session()->regenerate();
 
-        return redirect()->route('home', app()->getLocale());
+        return redirect()->route('dashboard', app()->getLocale());
     }
 
     public function destroy(): RedirectResponse
