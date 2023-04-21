@@ -34,21 +34,20 @@
             <table class="w-full text-sm text-left text-gray-500">
                 <thead class="text-xs text-zinc-950 h-14 bg-neutral-100">
                     <tr>
-                    <tr>
                         <th scope="col" class="px-4 py-3 font-semibold">
-                            <div class="flex gap-2">
-                                <a href="{{ request()->fullUrlWithQuery(['sort_by' => 'country', 'sort_order' => ($sort_by == 'country' && $sort_order == 'asc') ? 'desc' : 'asc']) }}"
-                                    class="{{ ($sort_by == 'country') ? 'sorting-' . $sort_order : '' }}">
+                            <div class="flex items-center gap-2">
+                                <a
+                                    href="{{ request()->fullUrlWithQuery(['sort_by' => 'country', 'sort_order' => ($sort_by == 'country' && $sort_order == 'asc') ? 'desc' : 'asc']) }}">
                                     {{ __('dashboard.location') }}
                                 </a>
                                 <x-arrows :sort_order="$sort_order" :is_sorted="($sort_by == 'country')" />
                             </div>
                         </th>
                         <th scope="col" class="px-4 py-3 font-semibold">
-                            <div class="flex gap-2">
+                            <div class="flex items-center gap-2">
 
-                                <a href="{{ request()->fullUrlWithQuery(['sort_by' => 'confirmed', 'sort_order' => ($sort_by == 'confirmed' && $sort_order == 'asc') ? 'desc' : 'asc']) }}"
-                                    class="{{ ($sort_by == 'confirmed') ? 'sorting-' . $sort_order : '' }}">
+                                <a
+                                    href="{{ request()->fullUrlWithQuery(['sort_by' => 'confirmed', 'sort_order' => ($sort_by == 'confirmed' && $sort_order == 'asc') ? 'desc' : 'asc']) }}">
                                     {{ __('dashboard.new_cases') }}
                                 </a>
                                 <x-arrows :sort_order="$sort_order" :is_sorted="($sort_by == 'confirmed')" />
@@ -56,10 +55,10 @@
                         </th>
 
                         <th scope="col" class="px-4 py-3 font-semibold">
-                            <div class="flex gap-2">
+                            <div class="flex items-center gap-2">
 
-                                <a href="{{ request()->fullUrlWithQuery(['sort_by' => 'recovered', 'sort_order' => ($sort_by == 'recovered' && $sort_order == 'asc') ? 'desc' : 'asc']) }}"
-                                    class="{{ ($sort_by == 'recovered') ? 'sorting-' . $sort_order : '' }}">
+                                <a
+                                    href="{{ request()->fullUrlWithQuery(['sort_by' => 'recovered', 'sort_order' => ($sort_by == 'recovered' && $sort_order == 'asc') ? 'desc' : 'asc']) }}">
                                     {{ __('dashboard.recovered') }}
                                 </a>
                                 <x-arrows :sort_order="$sort_order" :is_sorted="($sort_by == 'recovered')" />
@@ -67,16 +66,15 @@
                         </th>
 
                         <th scope="col" class="px-4 py-3 font-semibold">
-                            <div class="flex gap-2">
+                            <div class="flex items-center gap-2">
 
-                                <a href="{{ request()->fullUrlWithQuery(['sort_by' => 'deaths', 'sort_order' => ($sort_by == 'deaths' && $sort_order == 'asc') ? 'desc' : 'asc']) }}"
-                                    class="{{ ($sort_by == 'deaths') ? 'sorting-' . $sort_order : '' }}">
+                                <a
+                                    href="{{ request()->fullUrlWithQuery(['sort_by' => 'deaths', 'sort_order' => ($sort_by == 'deaths' && $sort_order == 'asc') ? 'desc' : 'asc']) }}">
                                     {{ __('dashboard.deaths') }}
                                 </a>
                                 <x-arrows :sort_order="$sort_order" :is_sorted="($sort_by == 'deaths')" />
                             </div>
                         </th>
-
                     </tr>
                 </thead>
 
