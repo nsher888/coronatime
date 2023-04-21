@@ -30,7 +30,7 @@
                     </svg>
 
                     <h2 class="mb-4 font-medium md:text-xl">{{ __('dashboard.new_cases') }}</h2>
-                    <h3 class="text-2xl font-extrabold text-blue-700 md:text-4xl">{{ number_format($new_cases) }}</h3>
+                    <h3 class="text-2xl font-extrabold text-blue-700 md:text-4xl">{{ $new_cases }}</h3>
                 </div>
             </div>
             <div class="flex-1 h-48 md:h-64 rounded-2xl bg-green-rgba shadow-box-sm">
@@ -53,7 +53,7 @@
                     </svg>
 
                     <h2 class="mb-4 font-medium md:text-xl">{{ __('dashboard.recovered') }}</h2>
-                    <h3 class="text-2xl font-extrabold text-green-600 md:text-4xl">{{ number_format($recovered) }}</h3>
+                    <h3 class="text-2xl font-extrabold text-green-600 md:text-4xl">{{ $recovered }}</h3>
                 </div>
             </div>
             <div class="flex-1 h-48 md:h-64 rounded-2xl bg-yellow-rgba shadow-box-sm">
@@ -76,7 +76,7 @@
                     </svg>
 
                     <h2 class="mb-4 font-medium md:text-xl">{{ __('dashboard.deaths') }}</h2>
-                    <h3 class="text-2xl font-extrabold text-yellow-400 md:text-4xl">{{ number_format($deaths) }}</h3>
+                    <h3 class="text-2xl font-extrabold text-yellow-400 md:text-4xl">{{ $deaths }}</h3>
                 </div>
             </div>
         </div>

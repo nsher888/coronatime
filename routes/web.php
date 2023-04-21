@@ -32,10 +32,6 @@ Route::group(['prefix' => '{language}'], function () {
 
     Route::post('logout', [SessionController::class, 'destroy'])->name('logout')->middleware('auth');
 
-    Route::get('dashboard', [StatisticsController::class, 'index'])->middleware('auth')->name('dashboard');
-
-    Route::get('country-dashboard', [StatisticsController::class, 'show'])->middleware('auth')->name('country-dashboard');
-
     Route::view('verify-notice', 'auth.verify-email')->name('verification.notice');
 
     Route::view('/forgot-password', 'auth.forgot-password')->name('password.request');
@@ -53,4 +49,8 @@ Route::group(['prefix' => '{language}'], function () {
     Route::view('/reset-success', 'auth.reset-success')->name('password.success');
 
     Route::view('/verify-success', 'auth.verify-success')->name('verification.success');
+
+    Route::get('dashboard', [StatisticsController::class, 'index'])->middleware('auth')->name('dashboard');
+    Route::get('country-dashboard', [StatisticsController::class, 'show'])->middleware('auth')->name('country-dashboard');
+
 });

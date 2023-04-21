@@ -11,4 +11,7 @@ return [
 
     'search_by_country' => 'Search by country',
     'location' => 'Location',
+    'worldwide' => 'Worldwide',
+
+    'no_results' => 'No results found'
 ];
