@@ -12,10 +12,9 @@ return new class () extends Migration {
     {
         Schema::create('country_statistics', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('country_id');
+            $table->string('country');
             $table->integer('confirmed');
             $table->integer('recovered');
-            $table->integer('critical');
             $table->integer('deaths');
             $table->timestamp('created_at');
             $table->timestamp('updated_at')->nullable();
