@@ -39,7 +39,7 @@ class ForgotPasswordController extends Controller
             function ($user, $password) {
                 $user->forceFill([
                     'password' => bcrypt($password)
-                ])->setRememberToken(Str::random(60));
+                ]);
 
                 $user->save();
 
