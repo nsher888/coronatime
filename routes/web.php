@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::redirect('/', '/en/dashboard', 301);
+Route::redirect('/', [SessionController::class, 'redirect'])->name('redirect');
 
 Route::group(['prefix' => '{language}'], function () {
     Route::get('login', [SessionController::class, 'create'])->name('login.create')->middleware('guest');
@@ -50,13 +50,7 @@ Route::group(['prefix' => '{language}'], function () {
 
     Route::view('/verify-success', 'auth.verify-success')->name('verification.success');
 
-    Route::get('dashboard', [StatisticsController::class, 'index'])
-        ->middleware(['auth', 'verified'])
-        ->name('dashboard');
-
-    Route::get('country-dashboard', [StatisticsController::class, 'show'])
-        ->middleware(['auth', 'verified'])
-        ->name('country-dashboard');
-
+    Route::get('dashboard', [StatisticsController::class, 'index'])->middleware('auth')->name('dashboard');
+    Route::get('country-dashboard', [StatisticsController::class, 'show'])->middleware('auth')->name('country-dashboard');
 
 });
