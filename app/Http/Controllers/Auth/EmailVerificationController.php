@@ -7,6 +7,7 @@ use Illuminate\Auth\Events\Verified;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EmailVerificationController extends Controller
 {
@@ -18,6 +19,7 @@ class EmailVerificationController extends Controller
 
         if ($request->user()->markEmailAsVerified()) {
             event(new Verified($request->user()));
+            Auth::logout();
         }
 
         return redirect()->route('verification.success', ['language' => app()->getLocale()]);

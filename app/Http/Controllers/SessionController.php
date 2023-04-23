@@ -20,7 +20,8 @@ class SessionController extends Controller
         $loginType = filter_var(request()->input('username'), FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
         $requestData = [    $loginType => request()->input('username'),    'password' => request()->input('password')];
 
-        if (!auth()->attempt($requestData)) {
+        $remember = $request->has('remember');
+        if (!auth()->attempt($requestData, $remember)) {
             throw ValidationException::withMessages([
                 'username' => 'The provided credentials do not match our records.',
             ]);

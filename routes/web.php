@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::redirect('/', '/en/dashboard', 301);
+Route::redirect('/', [SessionController::class, 'redirect'])->name('redirect');
 
 Route::group(['prefix' => '{language}'], function () {
     Route::get('login', [SessionController::class, 'create'])->name('login.create')->middleware('guest');
