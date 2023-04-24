@@ -21,9 +21,13 @@ class FetchCountryData extends Command
                 'code' => $country['code'],
             ])->json();
 
+            $countryName = [
+                'en' => $country['name']['en'],
+                'ka' => $country['name']['ka']
+            ];
+
             CountryStatistic::updateOrCreate([
-                'country' => json_encode($country['name'])
-            ], [
+                'country' => $countryName,
                 'confirmed' => $statisticsData['confirmed'],
                 'recovered' => $statisticsData['recovered'],
                 'deaths' => $statisticsData['deaths'],
