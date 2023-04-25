@@ -43,7 +43,7 @@ Route::group(['prefix' => '{language}'], function () {
     Route::post('/forgot-password', [ForgotPasswordController::class, 'store'])->name('password.email');
 
     Route::get('/email/verify/{id}/{hash}', [EmailVerificationController::class, 'verify'])
-        ->middleware(['auth', 'signed'])
+        ->middleware(['auth'])
         ->name('verification.verify');
 
     Route::view('/reset-success', 'auth.reset-success')->name('password.success');
