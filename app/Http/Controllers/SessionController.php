@@ -19,11 +19,6 @@ class SessionController extends Controller
         }
     }
 
-    public function create(): View
-    {
-        return view('sessions.create');
-    }
-
     public function store(Request $request): RedirectResponse
     {
         $loginType = filter_var(request()->input('username'), FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
