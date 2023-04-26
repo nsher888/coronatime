@@ -10,9 +10,13 @@ use Illuminate\View\View;
 
 class SessionController extends Controller
 {
-    public function create(): View
+    public function redirectToHome()
     {
-        return view('sessions.create');
+        if (Auth::check()) {
+            return redirect()->route('dashboard', app()->getLocale());
+        } else {
+            return redirect()->route('login.create', app()->getLocale());
+        }
     }
 
     public function store(Request $request): RedirectResponse
