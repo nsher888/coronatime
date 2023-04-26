@@ -10,6 +10,15 @@ use Illuminate\View\View;
 
 class SessionController extends Controller
 {
+    public function redirectToHome()
+    {
+        if (Auth::check()) {
+            return redirect()->route('dashboard', app()->getLocale());
+        } else {
+            return redirect()->route('login.create', app()->getLocale());
+        }
+    }
+
     public function create(): View
     {
         return view('sessions.create');

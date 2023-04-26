@@ -21,7 +21,7 @@ class StatisticsController extends Controller
         $query = CountryStatistic::query();
 
         if (request()->query('s')) {
-            $query->whereRaw("LOWER(json_unquote(json_extract(`country`, '$." . app()->getLocale() . "'))) LIKE ?", ['%' . strtolower(request()->query('s')) . '%']);
+            $query->whereRaw('LOWER(json_extract("country", "$.' . app()->getLocale() . '")) LIKE ?', ['%' . strtolower(request()->query('s')) . '%']);
         }
 
         $sort_by = request()->query('sort_by', 'country');
@@ -39,6 +39,7 @@ class StatisticsController extends Controller
             "sort_order" => $sort_order
         ]);
     }
+
 
 
 

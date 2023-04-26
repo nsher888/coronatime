@@ -7,6 +7,7 @@ use App\Http\Controllers\SessionController;
 use App\Http\Controllers\StatisticsController;
 use App\Mail\VerifyMail;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,9 +21,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::redirect('/', [SessionController::class, 'redirect'])->name('redirect');
 
 Route::group(['prefix' => '{language}'], function () {
+    Route::get('/', [SessionController::class, 'redirectToHome'])->name('home');
+
     Route::get('login', [SessionController::class, 'create'])->name('login.create')->middleware('guest');
 
     Route::get('register', [RegisterController::class, 'create'])->name('register.create')->middleware('guest');
