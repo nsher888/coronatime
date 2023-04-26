@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Http\Controllers\Auth\EmailVerificationController;
+use App\Http\Controllers\ForgotPasswordController;
 use App\Models\CountryStatistic;
 use App\Models\User;
 use Carbon\Carbon;
@@ -10,6 +11,7 @@ use Faker\Factory;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
@@ -19,15 +21,25 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\URL;
 use Tests\TestCase;
+use Illuminate\View\View;
 
 class ForgotPasswordControllerTest extends TestCase
 {
     public function testCreate()
     {
-        $response = $this->get(route('password.request', app()->getLocale()));
+        $request = new Request([
+            'token' => 'abc123',
+            'email' => 'test@example.com',
+        ]);
 
-        $response->assertStatus(200);
-        $response->assertViewIs('auth.forgot-password');
+        $controller = new ForgotPasswordController();
+
+        $view = $controller->create($request);
+
+        $this->assertInstanceOf(View::class, $view);
+        $this->assertEquals('auth.reset-password', $view->getName());
+        $this->assertEquals('abc123', $view->getData()['token']);
+        $this->assertEquals('test@example.com', $view->getData()['email']);
     }
 
     public function testStore()

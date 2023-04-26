@@ -33,5 +33,8 @@ class FetchCountryData extends Command
                 'deaths' => $statisticsData['deaths'],
             ]);
         }
+
+        $this->info('Countries fetched successfully');
+
     }
 }
