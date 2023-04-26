@@ -15,58 +15,58 @@ class FetchTest extends TestCase
 {
     use RefreshDatabase;
 
-    // public function test_fetch_country_data()
-    // {
-    //     // Run the command
-    //     Artisan::call('coronatime:fetch-country-data');
+    public function test_fetch_country_data()
+    {
+        // Run the command
+        Artisan::call('coronatime:fetch-country-data');
 
-    //     // Assert that the country_statistics table has the expected columns
-    //     $this->assertTrue(Schema::hasColumns('country_statistics', [
-    //         'country',
-    //         'confirmed',
-    //         'recovered',
-    //         'deaths',
-    //     ]));
-    // }
+        // Assert that the country_statistics table has the expected columns
+        $this->assertTrue(Schema::hasColumns('country_statistics', [
+            'country',
+            'confirmed',
+            'recovered',
+            'deaths',
+        ]));
+    }
 
-    // public function test_kernel_command()
-    // {
-    //     $status = Artisan::call('coronatime:fetch-country-data');
+    public function test_kernel_command()
+    {
+        $status = Artisan::call('coronatime:fetch-country-data');
 
-    //     $this->assertSame(0, $status);
-    // }
+        $this->assertSame(0, $status);
+    }
 
-    // public function testFetchCountryDataCommand()
-    // {
-    //     $this->artisan('coronatime:fetch-country-data')
-    //          ->assertExitCode(0);
-    // }
+    public function testFetchCountryDataCommand()
+    {
+        $this->artisan('coronatime:fetch-country-data')
+             ->assertExitCode(0);
+    }
 
-    // public function test_fetch_countries_command_successful()
-	// {
-	// 	Http::fake([
-	// 		'https://devtest.ge/countries' => Http::response([
-	// 			[
-	// 				'code'=> 'GE',
-	// 				'name'=> [
-	// 					'ka'=> 'საქართველო',
-	// 					'en'=> 'georgia',
-	// 				],
-	// 			],
-	// 			[
-	// 				'code'=> 'GR',
-	// 				'name'=> [
-	// 					'ka'=> 'საბერძნეთი',
-	// 					'en'=> 'greece',
-	// 				],
-	// 			],
-	// 		], 200),
-	// 	]);
+    public function test_fetch_countries_command_successful()
+	{
+		Http::fake([
+			'https://devtest.ge/countries' => Http::response([
+				[
+					'code'=> 'GE',
+					'name'=> [
+						'ka'=> 'საქართველო',
+						'en'=> 'georgia',
+					],
+				],
+				[
+					'code'=> 'GR',
+					'name'=> [
+						'ka'=> 'საბერძნეთი',
+						'en'=> 'greece',
+					],
+				],
+			], 200),
+		]);
 
-	// 	Http::fake(['https://devtest.ge/get-country-statistics']);
+		Http::fake(['https://devtest.ge/get-country-statistics']);
 
-	// 	$this->artisan('coronatime:fetch-country-data')->expectsOutput('Countries fetched successfully');
-	// }
+		$this->artisan('coronatime:fetch-country-data')->expectsOutput('Countries fetched successfully');
+	}
 
     public function test_index_method()
     {

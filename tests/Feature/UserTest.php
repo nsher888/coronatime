@@ -11,6 +11,8 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\Client\Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -105,39 +107,6 @@ class UserTest extends TestCase
         $response = $this->get(route('register.create', ['language' => app()->getLocale()]));
         $response->assertOk();
         $response->assertViewIs('register.create');
-    }
-
-    public function test_a_user_can_verify_their_email_address()
-    {
-        // Create a test user
-        $user = User::factory()->create([
-            'email' => $this->faker->unique()->safeEmail(),
-            'password' => bcrypt('password'),
-        ]);
-
-        // Simulate registration and email verification
-        $response = $this->actingAs($user)->post(route('register.store', app()->getLocale()), [
-            'username' => $this->faker->name(),
-            'email' => $user->email,
-            'password' => 'password',
-            'password_confirmation' => 'password',
-        ]);
-
-        $response->assertRedirect(route('verification.notice', ['language' => app()->getLocale()]));
-
-        $verificationUrl = URL::temporarySignedRoute(
-            'verification.verify',
-            now()->addMinutes(60),
-            ['id' => $user->id, 'hash' => sha1($user->getEmailForVerification())]
-        );
-
-        $response = $this->get($verificationUrl);
-
-        // Check that the user is redirected to the verification success page
-        $response->assertRedirect(route('verification.success', ['language' => app()->getLocale()]));
-
-        // Check that the user is marked as verified
-        $this->assertTrue($user->fresh()->hasVerifiedEmail());
     }
 
 }

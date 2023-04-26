@@ -10,6 +10,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\URL;
 use Tests\TestCase;
@@ -31,5 +32,21 @@ class EmailVerificationControllerTest extends TestCase
         $this->assertAuthenticatedAs($user);
     }
 
+    public function test_fullfil_registration_verification()
+	{
+		$user = User::factory()->create([
+			'username'         => 'test',
+			'email'            => 'test@test.ge',
+			'password'         => bcrypt('password'),
+			'email_verified_at'=> null,
+		]);
+
+		$hash = sha1($user->getEmailForVerification());
+		$id = $user->id;
+
+		$path = route('verification.verify', ['id' => $id, 'hash' => $hash, 'language' => app()->getLocale()]);
+		$response = $this->actingAs($user)->get($path);
+		$response->assertRedirect(route('verification.success', ['language' => app()->getLocale()]));
+	}
 
 }
