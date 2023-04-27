@@ -36,7 +36,7 @@ class FetchTest extends TestCase
         $this->assertSame(0, $status);
     }
 
-    public function testFetchCountryDataCommand()
+    public function test_fetch_country_data_command()
     {
         $this->artisan('coronatime:fetch-country-data')
              ->assertExitCode(0);
