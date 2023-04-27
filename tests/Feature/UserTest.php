@@ -3,11 +3,16 @@
 namespace Tests\Feature;
 
 use App\Http\Controllers\Auth\EmailVerificationController;
+use App\Http\Controllers\SessionController;
+use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Models\User;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\Client\Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -16,6 +21,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\URL;
+use Mockery;
 use Tests\TestCase;
 
 class UserTest extends TestCase
@@ -85,6 +92,21 @@ class UserTest extends TestCase
         $response = $this->get(route('password.request', ['language' => app()->getLocale()]));
         $response->assertOk();
         $response->assertViewIs('auth.forgot-password');
+    }
+
+    public function test_sessions_create_view()
+    {
+        $controller = new SessionController();
+        $response = $controller->create();
+        $this->assertInstanceOf(\Illuminate\View\View::class, $response);
+        $this->assertEquals('sessions.create', $response->getName());
+    }
+
+    public function test_register_create_view()
+    {
+        $response = $this->get(route('register.create', ['language' => app()->getLocale()]));
+        $response->assertOk();
+        $response->assertViewIs('register.create');
     }
 
 }

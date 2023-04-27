@@ -2,15 +2,13 @@
 
 namespace Tests\Feature;
 
-use App\Console\Kernel;
+use Illuminate\Foundation\Console\Kernel;
 use App\Models\CountryStatistic;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Console\Scheduling\Schedule;
-use Illuminate\Support\Facades\Event;
 use Tests\TestCase;
 
 class FetchTest extends TestCase
@@ -30,6 +28,45 @@ class FetchTest extends TestCase
             'deaths',
         ]));
     }
+
+    public function test_kernel_command()
+    {
+        $status = Artisan::call('coronatime:fetch-country-data');
+
+        $this->assertSame(0, $status);
+    }
+
+    public function test_fetch_country_data_command()
+    {
+        $this->artisan('coronatime:fetch-country-data')
+             ->assertExitCode(0);
+    }
+
+    public function test_fetch_countries_command_successful()
+	{
+		Http::fake([
+			'https://devtest.ge/countries' => Http::response([
+				[
+					'code'=> 'GE',
+					'name'=> [
+						'ka'=> 'საქართველო',
+						'en'=> 'georgia',
+					],
+				],
+				[
+					'code'=> 'GR',
+					'name'=> [
+						'ka'=> 'საბერძნეთი',
+						'en'=> 'greece',
+					],
+				],
+			], 200),
+		]);
+
+		Http::fake(['https://devtest.ge/get-country-statistics']);
+
+		$this->artisan('coronatime:fetch-country-data')->expectsOutput('Countries fetched successfully');
+	}
 
     public function test_index_method()
     {
