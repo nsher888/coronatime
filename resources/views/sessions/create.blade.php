@@ -16,7 +16,7 @@
             </div>
 
             <x-form-button label="{{ __('auth.login') }}" />
-            <div class="flex self-center justify-center gap-2">
+            <div class="flex justify-between gap-2 md:justify-center">
                 <p class="text-zinc-500">{{ __('auth.dont_have_account') }}</p>
                 <a class="font-bold text-slate-950" href="{{ route('register.create', app()->getLocale()) }}">{{
                     __('auth.sign_up') }}</a>
