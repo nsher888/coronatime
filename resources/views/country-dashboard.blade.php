@@ -29,9 +29,8 @@
             </div>
         </form>
 
-
         <div class="relative md:max-h-[600px] mt-4 md:mt-10 overflow-auto shadow-box-sm mb-14">
-            <table class="w-full text-sm text-left text-gray-500">
+            <table class="w-full text-sm text-left text-gray-500 table-fixed">
                 <thead class="text-xs text-zinc-950 h-14 bg-neutral-100">
                     <tr>
                         <th scope="col" class="px-4 py-3 font-semibold">
@@ -40,7 +39,8 @@
                                     href="{{ request()->fullUrlWithQuery(['sort_by' => 'country', 'sort_order' => ($sort_by == 'country' && $sort_order == 'asc') ? 'desc' : 'asc']) }}">
                                     {{ __('dashboard.location') }}
                                 </a>
-                                <x-arrows :sort_order="$sort_order" :is_sorted="($sort_by == 'country')" />
+                                <x-arrows :sort_order="$sort_order" :is_sorted="($sort_by == 'country')"
+                                    :sort_by="($sort_by == 'country')" />
                             </div>
                         </th>
                         <th scope="col" class="px-4 py-3 font-semibold">
