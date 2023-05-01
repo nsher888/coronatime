@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\CountryStatistic;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class StatisticsController extends Controller
 {
-    public function index()
+    public function index(): View
     {
         return view('dashboard', [
             "new_cases" => number_format(CountryStatistic::sum('confirmed')),
@@ -16,7 +17,7 @@ class StatisticsController extends Controller
         ]);
     }
 
-    public function show()
+    public function show(): View
     {
         $query = CountryStatistic::query();
 
@@ -39,9 +40,4 @@ class StatisticsController extends Controller
             "sort_order" => $sort_order
         ]);
     }
-
-
-
-
-
 }
