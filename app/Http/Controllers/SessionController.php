@@ -10,7 +10,7 @@ use Illuminate\View\View;
 
 class SessionController extends Controller
 {
-    public function redirectToHome()
+    public function redirectToHome(): RedirectResponse
     {
         if (Auth::check()) {
             return redirect()->route('dashboard', app()->getLocale());
