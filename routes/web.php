@@ -16,7 +16,8 @@ Route::group(['prefix' => '{language}'], function () {
 
     Route::view('login', 'sessions.create')->name('login.create')->middleware('guest');
 
-    Route::get('register', [RegisterController::class, 'create'])->name('register.create')->middleware('guest');
+    Route::view('register', 'register.create')->name('register.create')->middleware('guest');
+
     Route::post('register', [RegisterController::class, 'store'])->name('register.store')->middleware('guest');
 
     Route::post('login', [SessionController::class, 'store'])->name('login.store')->middleware('guest');
@@ -27,7 +28,7 @@ Route::group(['prefix' => '{language}'], function () {
 
     Route::view('/forgot-password', 'auth.forgot-password')->name('password.request');
 
-    Route::get('/reset-password', [ForgotPasswordController::class, 'create'])->name('password.reset');
+    Route::view('/reset-password', 'auth.reset-password', ['token' => request()->token, 'email' => request()->email])->name('password.reset');
 
     Route::post('/reset-password', [ForgotPasswordController::class, 'updatePassword'])->name('password.update');
 
