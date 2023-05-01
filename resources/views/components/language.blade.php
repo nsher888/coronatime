@@ -11,7 +11,8 @@
         <template x-for="locale in locales" :key="locale">
             <li x-show="currentLocale != locale">
                 <a @click.prevent="currentLocale = locale; isOpen = false; window.location.href = `/${locale}/` + window.location.pathname.split('/').pop()"
-                    class="block px-4 py-2 hover:bg-gray-100" x-text="locale === 'en' ? 'English' : 'Georgian'"></a>
+                    class="block px-4 py-2 cursor-pointer hover:bg-gray-100"
+                    x-text="locale === 'en' ? 'English' : 'Georgian'"></a>
             </li>
         </template>
     </ul>
