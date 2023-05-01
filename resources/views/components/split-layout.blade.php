@@ -12,6 +12,6 @@
     </div>
 
     <div class="hidden col-span-2 md:block">
-        <img class="w-full h-full max-h-screen" src="{{ asset('images/bg.png') }}" alt="Background">
+        <img class="w-full h-full" src="{{ asset('images/bg.png') }}" alt="Background">
     </div>
 </div>
