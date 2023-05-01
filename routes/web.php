@@ -14,35 +14,39 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => '{language}'], function () {
     Route::get('/', [SessionController::class, 'redirectToHome'])->name('home');
 
-    Route::view('login', 'sessions.create')->name('login.create')->middleware('guest');
+    Route::middleware(['auth'])->group(function () {
+        Route::post('logout', [SessionController::class, 'destroy'])->name('logout');
+        Route::get('/email/verify/{id}/{hash}', [EmailVerificationController::class, 'verify'])->name('verification.verify');
 
-    Route::view('register', 'register.create')->name('register.create')->middleware('guest');
+        Route::controller(StatisticsController::class)->group(function () {
+            Route::get('dashboard', 'index')->name('dashboard');
+            Route::get('country-dashboard', 'show')->name('country-dashboard');
+        });
+    });
 
-    Route::post('register', [RegisterController::class, 'store'])->name('register.store')->middleware('guest');
+    Route::middleware(['guest'])->group(function () {
+        Route::view('/forgot-password', 'auth.forgot-password')->name('password.request');
+        Route::view('/reset-password', 'auth.reset-password', ['token' => request()->token, 'email' => request()->email])->name('password.reset');
 
-    Route::post('login', [SessionController::class, 'store'])->name('login.store')->middleware('guest');
+        Route::prefix('login')->group(function () {
+            Route::view('/', 'sessions.create')->name('login.create');
+            Route::post('/', [SessionController::class, 'store'])->name('login.store');
+        });
 
-    Route::post('logout', [SessionController::class, 'destroy'])->name('logout')->middleware('auth');
+        Route::prefix('register')->group(function () {
+            Route::view('/', 'register.create')->name('register.create');
+            Route::post('/', [RegisterController::class, 'store'])->name('register.store');
+        });
+
+        Route::controller(ForgotPasswordController::class)->group(function () {
+            Route::post('/forgot-password', 'store')->name('password.email');
+            Route::post('/reset-password', 'updatePassword')->name('password.update');
+        });
+    });
 
     Route::view('verify-notice', 'auth.verify-email')->name('verification.notice');
-
-    Route::view('/forgot-password', 'auth.forgot-password')->name('password.request');
-
-    Route::view('/reset-password', 'auth.reset-password', ['token' => request()->token, 'email' => request()->email])->name('password.reset');
-
-    Route::post('/reset-password', [ForgotPasswordController::class, 'updatePassword'])->name('password.update');
-
-    Route::post('/forgot-password', [ForgotPasswordController::class, 'store'])->name('password.email');
-
-    Route::get('/email/verify/{id}/{hash}', [EmailVerificationController::class, 'verify'])
-        ->middleware(['auth'])
-        ->name('verification.verify');
-
     Route::view('/reset-success', 'auth.reset-success')->name('password.success');
-
     Route::view('/verify-success', 'auth.verify-success')->name('verification.success');
-
-    Route::get('dashboard', [StatisticsController::class, 'index'])->middleware('auth')->name('dashboard');
-    Route::get('country-dashboard', [StatisticsController::class, 'show'])->middleware('auth')->name('country-dashboard');
-
 });
+
+
