@@ -10,8 +10,9 @@
 
 <body style="font-family: Inter;">
     <div style="max-width: 500px; margin: 0 auto;">
-        <img src="{{public_path().'/images/confirmation-img.png'}}" alt="Confirmation Image"
+        <img src="{{ asset('/images/confirmation-img.png') }}" alt="Confirmation Image"
             style="display: block; margin: 0 auto 56px;">
+
 
         <div style="text-align: center;">
             <h1
