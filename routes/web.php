@@ -19,8 +19,10 @@ Route::group(['prefix' => '{language}'], function () {
         Route::get('/email/verify/{id}/{hash}', [EmailVerificationController::class, 'verify'])->name('verification.verify');
 
         Route::controller(StatisticsController::class)->group(function () {
-            Route::get('dashboard', 'index')->name('dashboard');
-            Route::get('country-dashboard', 'show')->name('country-dashboard');
+            Route::middleware(['verified'])->group(function () {
+                Route::get('dashboard', 'index')->name('dashboard');
+                Route::get('country-dashboard', 'show')->name('country-dashboard');
+            });
         });
     });
 
