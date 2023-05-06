@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+Route::redirect('/', '/en');
 
 Route::group(['prefix' => '{language}'], function () {
     Route::get('/', [SessionController::class, 'redirectToHome'])->name('home');
