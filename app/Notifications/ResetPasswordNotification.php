@@ -29,7 +29,7 @@ class ResetPasswordNotification extends Notification
 
 
         return (new MailMessage())
-            ->subject(__('Reset Password Notification'))
+            ->subject(__('mail.confirmation_password'))
             ->markdown('vendor.notifications.reset-password', ['url' => $resetUrl]);
     }
 }

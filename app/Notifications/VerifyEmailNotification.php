@@ -36,7 +36,7 @@ class VerifyEmailNotification extends Notification
         );
 
         return (new MailMessage())
-            ->subject(__('mail.confirmation_subject'))
+            ->subject(__('mail.confirmation_email'))
             ->view('vendor.notifications.email', ['actionUrl' => $url]);
     }
 }
