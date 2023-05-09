@@ -37,7 +37,13 @@
                             <div class="flex items-center gap-2">
                                 <x-arrows :sort_order="$sort_order" :is_sorted="($sort_by == 'country')"
                                     sort_by="country">
-                                    {{ __('dashboard.location') }}
+                                    @if(app()->getLocale() === 'ka')
+                                    <span class="block truncate md:whitespace-normal max-w-[7ch] md:max-w-none">{{
+                                        __('dashboard.location')
+                                        }}</span>
+                                    @else
+                                    {{ Str::limit(__('dashboard.location'), 10) }}
+                                    @endif
                                 </x-arrows>
                             </div>
                         </th>
@@ -45,7 +51,13 @@
                             <div class="flex items-center gap-2">
                                 <x-arrows :sort_order="$sort_order" :is_sorted="($sort_by == 'confirmed')"
                                     sort_by="confirmed">
-                                    {{ __('dashboard.new_cases') }}
+                                    @if(app()->getLocale() === 'ka')
+                                    <span class="block truncate whitespace-normal max-w-[7ch] md:max-w-none">{{
+                                        __('dashboard.new_cases')
+                                        }}</span>
+                                    @else
+                                    {{ Str::limit(__('dashboard.new_cases'), 10) }}
+                                    @endif
                                 </x-arrows>
                             </div>
                         </th>
@@ -53,15 +65,30 @@
                             <div class="flex items-center gap-2">
                                 <x-arrows :sort_order="$sort_order" :is_sorted="($sort_by == 'recovered')"
                                     sort_by="recovered">
-                                    {{ __('dashboard.recovered') }}
+                                    @if(app()->getLocale() === 'ka')
+                                    <span class="block truncate md:whitespace-normal max-w-[7ch] md:max-w-none">{{
+                                        __('dashboard.recovered')
+                                        }}</span>
+                                    @else
+                                    {{ Str::limit(__('dashboard.recovered'), 10) }}
+                                    @endif
                                 </x-arrows>
                             </div>
                         </th>
                         <th scope="col" class="px-4 py-3 font-semibold">
-                            <div class="flex items-center gap-2">
+                            <div class="flex items-center w-3 gap-2">
                                 <x-arrows :sort_order="$sort_order" :is_sorted="($sort_by == 'deaths')"
                                     sort_by="deaths">
-                                    {{ __('dashboard.deaths') }}
+
+                                    @if (app()->getLocale() === 'ka')
+                                    <span class="block truncate md:whitespace-normal max-w-[6ch] md:max-w-none">{{
+                                        __('dashboard.deaths')
+                                        }}</span>
+                                    @else
+                                    {{ Str::limit(__('dashboard.deaths'), 10) }}
+                                    @endif
+
+
                                 </x-arrows>
                             </div>
                         </th>
@@ -99,7 +126,7 @@
                     @foreach ($country_stats as $country)
                     <tr class="bg-white border-b border-neutral-100">
                         <th scope="row" class="px-4 py-4 font-medium text-gray-900 whitespace-nowrap">
-                            {{ $country->country }}
+                            {{ Str::limit($country->country, 8) }}
                         </th>
                         <td class="px-4 py-4">
                             {{ number_format($country->confirmed) }}

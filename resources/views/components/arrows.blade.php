@@ -1,6 +1,6 @@
 @props(['sort_order', 'is_sorted', 'sort_by'])
 
-<div class="flex items-center gap-2">
+<div class="flex items-center gap-1 md:gap-2">
 
     <a href="{{ request()->fullUrlWithQuery(['sort_by' => $sort_by, 'sort_order' => ($is_sorted && $sort_order == 'asc') ? 'desc' : 'asc']) }}"
         class="cursor-pointer">
